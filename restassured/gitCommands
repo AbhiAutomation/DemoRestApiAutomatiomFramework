@@ -1,0 +1,24 @@
+| Command                  | Purpose           | Recommended              |
+| ------------------------ | ----------------- | ------------------------ |
+| `git reset`              | Unstage all files | ⭐⭐⭐⭐⭐ Most commonly used |
+| `git restore --staged .` | Unstage all files | ⭐⭐⭐⭐ Modern syntax       |
+| `git add .`              | stage all files | ⭐⭐⭐⭐⭐ Most commonly used |
+| `git status             | staus of  all files | ⭐⭐⭐⭐⭐ Most commonly used |
+git restore --staged restassured/gitCommands
+
+.gitignore only affects untracked files. It does not automatically remove files that Git has already started tracking or staging.
+
+If an interviewer asks:
+Does git add create objects?
+A strong answer is:
+"Yes. When I run git add, Git computes a hash of the file content, compresses it, and stores it as a blob object in .git/objects. The index (.git/index) records which object hashes are staged. When I later run git commit, Git creates tree and commit objects that organize those blobs into a snapshot, then updates the current branch and HEAD to point to the new commit."
+I think you'll enjoy the next step
+Since you're interested in internals, we can actually inspect your .git directory live.
+We'll run commands like:
+git cat-file -t <hash>
+git cat-file -p <hash>
+git ls-files --stage
+git ls-tree
+git rev-parse HEAD
+
+You'll see your actual blob objects, tree objects, commit objects, and the index, not just diagrams. This is one of the best ways to build a deep understanding of Git for senior-level interviews.
